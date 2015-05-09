@@ -1,7 +1,5 @@
 #!/bin/sh
 
-CACHE_URL="http://192.168.1.2:3128"
-
 # Meteor Heroku buildpack for Meteor 0.9.3+.
 
 # fail fast.
@@ -49,8 +47,8 @@ PATH="$COMPILE_DIR/bin:$PATH"
 # Install node
 #
 echo "-----> Installing node"
-NODE_VERSION=`curl -sS --get $CACHE_URL/semver.io/node/resolve/0.10.x/`
-NODE_URL="$CACHE_URL/s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
+NODE_VERSION=`curl -sS --get ${CACHE_URL}semver.io/node/resolve/0.10.x/`
+NODE_URL="${CACHE_URL}s3pository.heroku.com/node/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.gz"
 curl -sS $NODE_URL -o - | tar -zxf - -C $COMPILE_DIR --strip 1
 # Export some environment variables for npm to use when compiling stuff.
 export npm_config_prefix="$COMPILE_DIR"
@@ -61,7 +59,7 @@ export CPPPATH="$CPATH"
 # Install meteor
 #
 echo "-----> Installing meteor"
-curl -sS $CACHE_URL/install.meteor.com/ | HOME="$METEOR_DIR" /bin/sh
+curl -sS ${CACHE_URL}install.meteor.com/ | HOME="$METEOR_DIR" /bin/sh
 METEOR="$METEOR_DIR/.meteor/meteor" # The meteor binary.
 
 #
