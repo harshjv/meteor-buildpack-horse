@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CACHE_URL="http://localhost:3128"
+CACHE_URL="http://192.168.1.2:3128"
 
 # Meteor Heroku buildpack for Meteor 0.9.3+.
 
